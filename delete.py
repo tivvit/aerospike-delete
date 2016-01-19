@@ -13,6 +13,7 @@ if __name__ == '__main__':
         help="[localhost] list of hosts")
     add('-p', '--port', type=int, default=3000, help="[3000] aerospike port")
     add('-s', '--set', type=str, help="aerospike set")
+    add('-t', '--ttl', type=int, default=None, help="ttl")
 
     args = parser.parse_args()
 
@@ -25,9 +26,15 @@ if __name__ == '__main__':
     aeros_client = cli.connect()
 
     def delEntry((key, metadata, record)):
-        print "deleting record - key: %s, val: %s" % (str(key), str(record))
         try:
-            aeros_client.remove(key)
+            if args.ttl:
+                print "setting ttl %d for record - key: %s, val: %s" % \
+                      (args.ttl, str(key), str(record))
+                aeros_client.touch(key, args.ttl)
+            else:
+                print "deleting record - key: %s, val: %s" % \
+                      (str(key), str(record))
+                aeros_client.remove(key)
         except Exception as e:
             print str(e)
 
