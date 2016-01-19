@@ -12,6 +12,7 @@ optional arguments:
                         [localhost] list of hosts
   -p PORT, --port PORT  [3000] aerospike port
   -s SET, --set SET     aerospike set
+  -t TTL, --ttl TTL     touch set with TTL
 ```
 
 ### TODO
