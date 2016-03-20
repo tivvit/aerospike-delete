@@ -1,5 +1,7 @@
 # Aerospike-deleter
 
+![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 ```python
 usage: delete.py [-h] [-a HOSTS [HOSTS ...]] [-p PORT] [-s SET] namespace
 
